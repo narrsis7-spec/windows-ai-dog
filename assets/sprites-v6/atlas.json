@@ -1,0 +1,1011 @@
+{
+  "version": "v6-eight",
+  "totalFrames": 64,
+  "worldScale": 0.44,
+  "groundAnchor": {
+    "x": 222,
+    "y": 405
+  },
+  "actions": {
+    "idle": {
+      "image": "idle.png",
+      "width": 1776,
+      "height": 888,
+      "sha256": "364f76bf40be3d72625c0475234b809ca503bf9697f665f1376d901513950d99",
+      "defaultFps": 8,
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sourceCalibrationScale": 0.8915254237288136,
+      "source": "assets\\sprites-v6-candidates\\idle-generated.png",
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ]
+    },
+    "walk": {
+      "image": "walk.png",
+      "width": 1776,
+      "height": 888,
+      "sha256": "c64e628ca560122ade390b1a6a5b62706c4620ced8345c96e806d9d7a799e610",
+      "defaultFps": 8,
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sourceCalibrationScale": 1.0436507936507937,
+      "source": "assets\\sprites\\walk.png",
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ]
+    },
+    "run": {
+      "image": "run.png",
+      "width": 1776,
+      "height": 888,
+      "sha256": "466ea70636c223a7e31195fd96d7b616e3ca660308b873ad9c7cf69929f41853",
+      "defaultFps": 12,
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sourceCalibrationScale": 1.0,
+      "source": "assets\\sprites\\run.png",
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ]
+    },
+    "jump": {
+      "image": "jump.png",
+      "width": 1776,
+      "height": 888,
+      "sha256": "82312c0ee58c90e6a70b6cb6098fad0fd99c34e9c5b8983f4006ea2277895e53",
+      "defaultFps": 8,
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sourceCalibrationScale": 1.0,
+      "source": "assets\\sprites\\jump.png",
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ]
+    },
+    "treat": {
+      "image": "treat.png",
+      "width": 1776,
+      "height": 888,
+      "sha256": "9ff21454f85b8c894c69d1c69e11cfc281c086259be84a7d277661f2e4a311ec",
+      "defaultFps": 6,
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sourceCalibrationScale": 0.8825503355704698,
+      "source": "assets\\sprites\\treat.png",
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ]
+    },
+    "headtilt": {
+      "image": "headtilt.png",
+      "width": 1776,
+      "height": 888,
+      "sha256": "12d730a8559f1b2737760dc3bf157d7f9edc4965080fa11b072f220f0192c252",
+      "defaultFps": 6,
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sourceCalibrationScale": 0.9037800687285223,
+      "source": "assets\\sprites-v6-candidates\\headtilt-identity-generated.png",
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ]
+    },
+    "sit": {
+      "image": "sit.png",
+      "width": 1776,
+      "height": 888,
+      "sha256": "0731c9e782d22c062606716c3005a48eb71244a0b18ee795424b51546f233247",
+      "defaultFps": 6,
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sourceCalibrationScale": 0.8322784810126582,
+      "source": "assets\\sprites-v6-candidates\\sit-identity-generated.png",
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ]
+    },
+    "lie": {
+      "image": "lie.png",
+      "width": 1776,
+      "height": 888,
+      "sha256": "e281f60b110bb614da27adbd8a515c32fc48312f2e1f1a3d501492f55dda4e72",
+      "defaultFps": 6,
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sourceCalibrationScale": 0.9163763066202091,
+      "source": "assets\\sprites-v6-candidates\\lie-identity-generated.png",
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ]
+    }
+  }
+}

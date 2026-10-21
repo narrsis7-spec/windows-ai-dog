@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0-windows7.0": {
+      "windowsaidog.core": {
+        "type": "Project"
+      },
+      "windowsaidog.windows": {
+        "type": "Project",
+        "dependencies": {
+          "WindowsAiDog.Core": "[1.0.0, )"
+        }
+      }
+    },
+    "net10.0-windows7.0/win-x64": {}
+  }
+}

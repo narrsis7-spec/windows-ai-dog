@@ -1,0 +1,7 @@
+**/bin/
+**/obj/
+artifacts/
+.superpowers/
+*.user
+*.log
+assets/sounds/sources/

@@ -1,0 +1,1371 @@
+{
+  "version": "v9-eight",
+  "totalFrames": 72,
+  "actions": {
+    "idle": {
+      "image": "idle.png",
+      "width": 1776,
+      "height": 888,
+      "defaultFps": 13,
+      "sha256": "fbd801826692c330aee494bf54cf162c73d91c68f01128ec08be94f0ea38c9fc",
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ],
+      "travelPixelsPerSecond": 0,
+      "coatColorGain": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "walk": {
+      "image": "walk.png",
+      "width": 1776,
+      "height": 888,
+      "defaultFps": 8,
+      "sha256": "7edeaf8a560cccec29dd52d846796c3c9ae5b742ce567a6022bac1205189a106",
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ],
+      "travelPixelsPerSecond": 66,
+      "coatColorGain": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "settleFrames": [
+        2,
+        7
+      ]
+    },
+    "run": {
+      "image": "run.png",
+      "width": 1776,
+      "height": 888,
+      "defaultFps": 11,
+      "sha256": "8af50971b4af555a0639d2ed93b5bc924377248d53c135fcbf23652864bb47dc",
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ],
+      "travelPixelsPerSecond": 150,
+      "coatColorGain": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "settleFrames": [
+        0,
+        7
+      ],
+      "stop": {
+        "image": "runstop.png",
+        "width": 1776,
+        "height": 1776,
+        "defaultFps": 8,
+        "sha256": "6c8945617a3ae88e491a9985560196145b1b0ddf89c5013dc03e9de117a16ef3",
+        "frames": [
+          {
+            "index": 0,
+            "sourceRect": {
+              "x": 0,
+              "y": 0,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 1,
+            "sourceRect": {
+              "x": 444,
+              "y": 0,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 2,
+            "sourceRect": {
+              "x": 888,
+              "y": 0,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 3,
+            "sourceRect": {
+              "x": 1332,
+              "y": 0,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 4,
+            "sourceRect": {
+              "x": 0,
+              "y": 444,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 5,
+            "sourceRect": {
+              "x": 444,
+              "y": 444,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 6,
+            "sourceRect": {
+              "x": 888,
+              "y": 444,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 7,
+            "sourceRect": {
+              "x": 1332,
+              "y": 444,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 8,
+            "sourceRect": {
+              "x": 0,
+              "y": 888,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 9,
+            "sourceRect": {
+              "x": 444,
+              "y": 888,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 10,
+            "sourceRect": {
+              "x": 888,
+              "y": 888,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 11,
+            "sourceRect": {
+              "x": 1332,
+              "y": 888,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 12,
+            "sourceRect": {
+              "x": 0,
+              "y": 1332,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 13,
+            "sourceRect": {
+              "x": 444,
+              "y": 1332,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 14,
+            "sourceRect": {
+              "x": 888,
+              "y": 1332,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          },
+          {
+            "index": 15,
+            "sourceRect": {
+              "x": 1332,
+              "y": 1332,
+              "width": 444,
+              "height": 444
+            },
+            "anchor": {
+              "x": 222,
+              "y": 405
+            }
+          }
+        ]
+      }
+    },
+    "jump": {
+      "image": "jump.png",
+      "width": 1776,
+      "height": 1776,
+      "defaultFps": 12,
+      "sha256": "7ff4b943e2f626b3113d656add723c8727f53a132fae47cb292885e6b3ce171e",
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 8,
+          "sourceRect": {
+            "x": 0,
+            "y": 888,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 9,
+          "sourceRect": {
+            "x": 444,
+            "y": 888,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 10,
+          "sourceRect": {
+            "x": 888,
+            "y": 888,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 11,
+          "sourceRect": {
+            "x": 1332,
+            "y": 888,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 12,
+          "sourceRect": {
+            "x": 0,
+            "y": 1332,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 13,
+          "sourceRect": {
+            "x": 444,
+            "y": 1332,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 14,
+          "sourceRect": {
+            "x": 888,
+            "y": 1332,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 15,
+          "sourceRect": {
+            "x": 1332,
+            "y": 1332,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ],
+      "coatColorGain": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "treat": {
+      "image": "treat.png",
+      "width": 1776,
+      "height": 888,
+      "defaultFps": 5,
+      "sha256": "b9451aa2e0f121d3f3c482c3b3c7b99be0f1903c6bd4792957df384e765bda5c",
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ],
+      "eatCompletedFrame": 5,
+      "coatColorGain": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "headtilt": {
+      "image": "headtilt.png",
+      "width": 1776,
+      "height": 888,
+      "defaultFps": 6,
+      "sha256": "e027866209b313852c54069f92ac1021ca93ffece9b28a6d25ab6668222e73a8",
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ],
+      "coatColorGain": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "sit": {
+      "image": "sit.png",
+      "width": 1776,
+      "height": 888,
+      "defaultFps": 6,
+      "sha256": "9ebe03889d247476a4d18598df2e753ef6472d9567db6971a206e77122b4a726",
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ],
+      "coatColorGain": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "lie": {
+      "image": "lie.png",
+      "width": 1776,
+      "height": 888,
+      "defaultFps": 6,
+      "sha256": "aae7800dd94503b6747851f0f5733e7c2f9c284b9f45ee1f389c1760778b4294",
+      "playbackSequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "frames": [
+        {
+          "index": 0,
+          "sourceRect": {
+            "x": 0,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 1,
+          "sourceRect": {
+            "x": 444,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 2,
+          "sourceRect": {
+            "x": 888,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 3,
+          "sourceRect": {
+            "x": 1332,
+            "y": 0,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 4,
+          "sourceRect": {
+            "x": 0,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 5,
+          "sourceRect": {
+            "x": 444,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 6,
+          "sourceRect": {
+            "x": 888,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        },
+        {
+          "index": 7,
+          "sourceRect": {
+            "x": 1332,
+            "y": 444,
+            "width": 444,
+            "height": 444
+          },
+          "anchor": {
+            "x": 222,
+            "y": 405
+          }
+        }
+      ],
+      "coatColorGain": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  }
+}
