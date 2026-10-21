@@ -79,26 +79,45 @@ public sealed class PetWindow:Window {
   LocationChanged+=(s,e)=>PositionCompanions();
   Closing+=(s,e)=>{Save();animation.Stop();visibility.Stop();sound.Stop();bubble?.Close();chat?.Close();settingsWindow?.Close();tray?.Dispose();NativeMethods.WTSUnRegisterSessionNotification(hwnd);playback.Dispose();http.Dispose();};
  }
+ // Right-click menu, also opened from the tray icon. Grouped: talk · play · sound · window · exit.
+ // From the tray it adds "bring back on screen" and shows 보이기 while the dog is hidden.
+ private bool menuFromTray;
  private ContextMenu Menu() {
-  var menu=new ContextMenu();
-  MenuItem Item(string label,Action command){var item=new MenuItem{Header=label};item.Click+=(s,e)=>command();menu.Items.Add(item);return item;}
-  Item("대화 입력",OpenChat);Item("최근 AI 답변 다시 보기",()=>{if(lastAiReply is not null)SayAi(lastAiReply);});Item("쓰다듬기",Stroke);Item("간식",()=>Request(PetAction.Treat));
+  var menu=new ContextMenu{Style=MenuStyles.Menu};
+  MenuItem Item(string label,Action command,string? hint=null){var item=new MenuItem{Header=label,InputGestureText=hint??"",Style=MenuStyles.Item};item.Click+=(s,e)=>command();menu.Items.Add(item);return item;}
+  void Line()=>menu.Items.Add(new Separator{Style=MenuStyles.Line});
+  Item("말 걸기",OpenChat,"더블클릭");
+  var lastReply=Item("마지막 답변 다시 보기",()=>{if(lastAiReply is not null)SayAi(lastAiReply);});
+  Line();
+  Item("간식 주기",()=>Request(PetAction.Treat));
+  var actions=new MenuItem{Header="동작",Style=MenuStyles.Item};
+  foreach(var value in Enum.GetValues<PetAction>().Where(a=>a!=PetAction.Treat)){var item=new MenuItem{Header=ActionLabel(value),Style=MenuStyles.Item};item.Click+=(s,e)=>Request(value);actions.Items.Add(item);}
+  menu.Items.Add(actions);
+  Line();
   // Quick toggles mirror the settings window; the check mark shows the current state.
-  var focus=Item("집중 모드",()=>ApplySettings(Settings with{FocusMode=!settings.FocusMode}));
   var mute=Item("음소거",()=>ApplySettings(Settings with{Muted=!settings.Muted}));
-  menu.Opened+=(s,e)=>{focus.IsChecked=settings.FocusMode;mute.IsChecked=settings.Muted;};
-  Item("관리 설정 · 이름 / AI / 소리",OpenSettings);
-  var actions=new MenuItem{Header="동작 선택"};foreach(var value in Enum.GetValues<PetAction>()){var item=new MenuItem{Header=ActionLabel(value)};item.Click+=(s,e)=>Request(value);actions.Items.Add(item);}menu.Items.Add(actions);
-  Item("강아지 숨기기 / 보이기",()=>{if(tray?.Registered!=true){Say("트레이 아이콘을 확인하지 못해 숨기지 않았어요.");return;}manualHidden=!manualHidden;PollVisibility();});
-  Item("화면 안으로 다시 가져오기",()=>{manualHidden=false;MoveTo(double.NaN,double.NaN);PollVisibility();});
-  Item("앱 종료",()=>Application.Current.Shutdown());return menu;
+  var focus=Item("집중 모드",()=>ApplySettings(Settings with{FocusMode=!settings.FocusMode}));
+  Line();
+  Item("설정…",OpenSettings);
+  var hide=Item("숨기기",()=>{if(tray?.Registered!=true){Say("트레이 아이콘을 확인하지 못해 숨기지 않았어요.");return;}manualHidden=!manualHidden;PollVisibility();});
+  var bringBack=Item("화면 안으로 가져오기",()=>{manualHidden=false;MoveTo(double.NaN,double.NaN);PollVisibility();});
+  Line();
+  Item("종료",()=>Application.Current.Shutdown());
+  menu.Opened+=(s,e)=>{
+   mute.IsChecked=settings.Muted;focus.IsChecked=settings.FocusMode;lastReply.IsEnabled=lastAiReply is not null;
+   hide.Header=manualHidden?"보이기":"숨기기";hide.InputGestureText=manualHidden?"":"트레이에서 다시 보이기";
+   // The tray flag is consumed here so the next right-click on the dog shows the normal menu.
+   bringBack.Visibility=menuFromTray||manualHidden?Visibility.Visible:Visibility.Collapsed;menuFromTray=false;
+  };
+  return menu;
  }
+
  private static string ActionLabel(PetAction a)=>a switch{PetAction.WagTail=>"꼬리 흔들기",PetAction.Walk=>"걷기",PetAction.Run=>"달리기",PetAction.Jump=>"점프",PetAction.Treat=>"간식",PetAction.Sit=>"앉기",PetAction.LieDown=>"엎드리기",_=>"고개 기울이기"};
  private IntPtr Hook(IntPtr window,int message,IntPtr w,IntPtr l,ref bool handled) {
   if(tray is not null&&(uint)message==tray.TaskbarCreated)tray.Add();
   if(message==TrayIcon.Callback) {
    if(l.ToInt32()==0x203){manualHidden=false;PollVisibility();OpenChat();}
-   if(l.ToInt32()==0x205){canvas.ContextMenu!.Placement=System.Windows.Controls.Primitives.PlacementMode.MousePoint;canvas.ContextMenu.IsOpen=true;}
+   if(l.ToInt32()==0x205){menuFromTray=true;canvas.ContextMenu!.Placement=System.Windows.Controls.Primitives.PlacementMode.MousePoint;canvas.ContextMenu.IsOpen=true;}
   }
   if(message==0x21){handled=true;return new IntPtr(3);}
   if(message==0x84){long point=l.ToInt64();var local=PointFromScreen(new Point((short)(point&0xffff),(short)((point>>16)&0xffff)));var hit=canvas.InputHitTest(local);if(hit is null||ReferenceEquals(hit,canvas)){handled=true;return new IntPtr(-1);}}
@@ -245,4 +264,40 @@ public sealed class BubbleWindow:Window {
   var timer=new DispatcherTimer{Interval=TimeSpan.FromSeconds(.25)};timer.Tick+=(s,e)=>{if(IsMouseOver||IsKeyboardFocusWithin||!IsVisible)return;remaining-=.25;if(remaining<=0){timer.Stop();Close();}};Closed+=(s,e)=>timer.Stop();Loaded+=(s,e)=>timer.Start();
  }
 }
-
+// Cream menu matching the bubble and chat input: rounded panel, soft shadow, apricot highlight.
+static class MenuStyles {
+ static readonly SolidColorBrush Cream=Frozen(0xFF,0xFB,0xF5),Line_=Frozen(0xEE,0xCF,0xAE),Ink=Frozen(0x4A,0x34,0x26),Muted=Frozen(0xA8,0x8F,0x79),Hover=Frozen(0xF8,0xE6,0xD2);
+ static SolidColorBrush Frozen(byte r,byte g,byte b){var x=new SolidColorBrush(Color.FromRgb(r,g,b));x.Freeze();return x;}
+ public static readonly Style Menu=BuildMenu(),Item=BuildItem(),Line=BuildLine();
+ static Style BuildMenu(){
+  var t=new ControlTemplate(typeof(ContextMenu));var border=new FrameworkElementFactory(typeof(Border));
+  border.SetValue(Border.BackgroundProperty,Cream);border.SetValue(Border.BorderBrushProperty,Line_);border.SetValue(Border.BorderThicknessProperty,new Thickness(1.5));border.SetValue(Border.CornerRadiusProperty,new CornerRadius(12));border.SetValue(Border.PaddingProperty,new Thickness(4,6,4,6));
+  border.SetValue(UIElement.EffectProperty,new System.Windows.Media.Effects.DropShadowEffect{Color=Color.FromRgb(0x7A,0x4E,0x2A),BlurRadius=12,ShadowDepth=2,Direction=270,Opacity=.18});
+  var items=new FrameworkElementFactory(typeof(StackPanel));items.SetValue(Panel.IsItemsHostProperty,true);border.AppendChild(items);t.VisualTree=border;
+  var s=new Style(typeof(ContextMenu));s.Setters.Add(new Setter(Control.TemplateProperty,t));s.Setters.Add(new Setter(ContextMenu.HasDropShadowProperty,false));s.Setters.Add(new Setter(Control.FontSizeProperty,13.0));s.Setters.Add(new Setter(Control.ForegroundProperty,Ink));return s;
+ }
+ static Style BuildLine(){var s=new Style(typeof(Separator));s.Setters.Add(new Setter(FrameworkElement.MarginProperty,new Thickness(10,4,10,4)));s.Setters.Add(new Setter(Control.BackgroundProperty,Line_));s.Setters.Add(new Setter(FrameworkElement.HeightProperty,1.0));
+  var t=new ControlTemplate(typeof(Separator));var r=new FrameworkElementFactory(typeof(Border));r.SetValue(Border.BackgroundProperty,Line_);r.SetValue(FrameworkElement.HeightProperty,1.0);t.VisualTree=r;s.Setters.Add(new Setter(Control.TemplateProperty,t));return s;}
+ // Row: check mark column, label, shortcut hint, submenu arrow; submenus open in the same cream panel.
+ static Style BuildItem(){
+  var t=new ControlTemplate(typeof(MenuItem));
+  var row=new FrameworkElementFactory(typeof(Border),"Row");row.SetValue(Border.CornerRadiusProperty,new CornerRadius(8));row.SetValue(Border.PaddingProperty,new Thickness(6,6,10,6));row.SetValue(Border.BackgroundProperty,Brushes.Transparent);
+  var grid=new FrameworkElementFactory(typeof(Grid));
+  foreach(var w in new[]{new GridLength(20),new GridLength(1,GridUnitType.Star),new GridLength(1,GridUnitType.Auto),new GridLength(14)}){var c=new FrameworkElementFactory(typeof(ColumnDefinition));c.SetValue(ColumnDefinition.WidthProperty,w);grid.AppendChild(c);}
+  var check=new FrameworkElementFactory(typeof(TextBlock),"Check");check.SetValue(TextBlock.TextProperty,"✓");check.SetValue(TextBlock.ForegroundProperty,Frozen(0xE3,0x9A,0x5C));check.SetValue(TextBlock.FontWeightProperty,FontWeights.Bold);check.SetValue(UIElement.VisibilityProperty,Visibility.Hidden);check.SetValue(FrameworkElement.VerticalAlignmentProperty,VerticalAlignment.Center);
+  var label=new FrameworkElementFactory(typeof(ContentPresenter));label.SetValue(ContentPresenter.ContentSourceProperty,"Header");label.SetValue(Grid.ColumnProperty,1);label.SetValue(FrameworkElement.VerticalAlignmentProperty,VerticalAlignment.Center);label.SetValue(FrameworkElement.MinWidthProperty,150.0);
+  var hint=new FrameworkElementFactory(typeof(TextBlock));hint.SetBinding(TextBlock.TextProperty,new System.Windows.Data.Binding("InputGestureText"){RelativeSource=System.Windows.Data.RelativeSource.TemplatedParent});hint.SetValue(Grid.ColumnProperty,2);hint.SetValue(TextBlock.ForegroundProperty,Muted);hint.SetValue(TextBlock.FontSizeProperty,11.0);hint.SetValue(FrameworkElement.MarginProperty,new Thickness(14,0,0,0));hint.SetValue(FrameworkElement.VerticalAlignmentProperty,VerticalAlignment.Center);
+  var arrow=new FrameworkElementFactory(typeof(TextBlock),"Arrow");arrow.SetValue(TextBlock.TextProperty,"›");arrow.SetValue(Grid.ColumnProperty,3);arrow.SetValue(TextBlock.ForegroundProperty,Muted);arrow.SetValue(UIElement.VisibilityProperty,Visibility.Collapsed);arrow.SetValue(FrameworkElement.HorizontalAlignmentProperty,HorizontalAlignment.Right);arrow.SetValue(FrameworkElement.VerticalAlignmentProperty,VerticalAlignment.Center);
+  var popup=new FrameworkElementFactory(typeof(System.Windows.Controls.Primitives.Popup),"PART_Popup");popup.SetValue(System.Windows.Controls.Primitives.Popup.PlacementProperty,System.Windows.Controls.Primitives.PlacementMode.Right);popup.SetValue(System.Windows.Controls.Primitives.Popup.AllowsTransparencyProperty,true);
+  popup.SetBinding(System.Windows.Controls.Primitives.Popup.IsOpenProperty,new System.Windows.Data.Binding("IsSubmenuOpen"){RelativeSource=System.Windows.Data.RelativeSource.TemplatedParent});
+  var panel=new FrameworkElementFactory(typeof(Border));panel.SetValue(Border.BackgroundProperty,Cream);panel.SetValue(Border.BorderBrushProperty,Line_);panel.SetValue(Border.BorderThicknessProperty,new Thickness(1.5));panel.SetValue(Border.CornerRadiusProperty,new CornerRadius(12));panel.SetValue(Border.PaddingProperty,new Thickness(4,6,4,6));panel.SetValue(FrameworkElement.MarginProperty,new Thickness(2,0,8,8));
+  panel.SetValue(UIElement.EffectProperty,new System.Windows.Media.Effects.DropShadowEffect{Color=Color.FromRgb(0x7A,0x4E,0x2A),BlurRadius=12,ShadowDepth=2,Direction=270,Opacity=.18});
+  var host=new FrameworkElementFactory(typeof(StackPanel));host.SetValue(Panel.IsItemsHostProperty,true);panel.AppendChild(host);popup.AppendChild(panel);
+  grid.AppendChild(check);grid.AppendChild(label);grid.AppendChild(hint);grid.AppendChild(arrow);grid.AppendChild(popup);row.AppendChild(grid);t.VisualTree=row;
+  var over=new Trigger{Property=MenuItem.IsHighlightedProperty,Value=true};over.Setters.Add(new Setter(Border.BackgroundProperty,Hover,"Row"));t.Triggers.Add(over);
+  var checkedT=new Trigger{Property=MenuItem.IsCheckedProperty,Value=true};checkedT.Setters.Add(new Setter(UIElement.VisibilityProperty,Visibility.Visible,"Check"));t.Triggers.Add(checkedT);
+  var sub=new Trigger{Property=MenuItem.HasItemsProperty,Value=true};sub.Setters.Add(new Setter(UIElement.VisibilityProperty,Visibility.Visible,"Arrow"));t.Triggers.Add(sub);
+  var off=new Trigger{Property=UIElement.IsEnabledProperty,Value=false};off.Setters.Add(new Setter(UIElement.OpacityProperty,.45));t.Triggers.Add(off);
+  var s=new Style(typeof(MenuItem));s.Setters.Add(new Setter(Control.TemplateProperty,t));s.Setters.Add(new Setter(Control.ForegroundProperty,Ink));s.Setters.Add(new Setter(Control.CursorProperty,System.Windows.Input.Cursors.Hand));return s;
+ }
+}

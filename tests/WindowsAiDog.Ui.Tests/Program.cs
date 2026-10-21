@@ -148,7 +148,7 @@ internal static class Program {
   Check("TraySettingsRestoresManuallyHiddenPet",()=>{
    pet.ApplySettings(pet.Settings with{FocusMode=false});
    var menu=((System.Windows.Controls.Canvas)pet.Content).ContextMenu!;
-   var hide=menu.Items.OfType<System.Windows.Controls.MenuItem>().First(i=>i.Header.ToString()!.StartsWith("강아지 숨기기"));
+   var hide=menu.Items.OfType<System.Windows.Controls.MenuItem>().First(i=>(string)i.Header=="숨기기");
    hide.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.MenuItem.ClickEvent));Assert(!pet.IsVisible);
    pet.OpenSettings();Assert(pet.IsVisible&&app.Windows.OfType<SettingsWindow>().Any(w=>w.IsVisible));
    foreach(var window in app.Windows.OfType<SettingsWindow>().ToArray())window.Close();
@@ -376,6 +376,22 @@ internal static class Program {
      bubble.Close();chat.CloseInput();Pump(100);
     }
    }finally{instance.Close();}
+  });
+  Check("RightClickMenuIsGroupedAndAdaptsToTray",()=>{
+   var canvas=(System.Windows.Controls.Canvas)pet.Content;var menu=canvas.ContextMenu!;
+   string[] Headers()=>menu.Items.Cast<object>().Select(o=>o is System.Windows.Controls.MenuItem m?(m.Visibility==Visibility.Visible?(string)m.Header:null):"—").Where(h=>h is not null).Select(h=>h!).ToArray();
+   menu.PlacementTarget=canvas;menu.Placement=System.Windows.Controls.Primitives.PlacementMode.Bottom;menu.IsOpen=true;menu.UpdateLayout();
+   try{
+    // Talk · play · sound · window · exit, separated; no duplicate treat, no petting, no "bring back" from the dog itself.
+    Assert(string.Join("|",Headers())=="말 걸기|마지막 답변 다시 보기|—|간식 주기|동작|—|음소거|집중 모드|—|설정…|숨기기|—|종료");
+    var actions=menu.Items.OfType<System.Windows.Controls.MenuItem>().Single(m=>(string)m.Header=="동작");Assert(actions.Items.Count==7&&actions.Items.OfType<System.Windows.Controls.MenuItem>().All(m=>(string)m.Header!="간식"));
+    var bmp=new RenderTargetBitmap((int)Math.Ceiling(menu.ActualWidth),(int)Math.Ceiling(menu.ActualHeight),96,96,PixelFormats.Pbgra32);bmp.Render(menu);var png=new PngBitmapEncoder();png.Frames.Add(BitmapFrame.Create(bmp));using(var file=File.Create("artifacts/menu-preview.png"))png.Save(file);
+   }finally{menu.IsOpen=false;}
+   // Opened from the tray icon it also offers to bring the dog back on screen.
+   void Settle()=>System.Windows.Threading.Dispatcher.CurrentDispatcher.Invoke(System.Windows.Threading.DispatcherPriority.ContextIdle,new Action(()=>{}));
+   Settle();typeof(PetWindow).GetField("menuFromTray",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance)!.SetValue(pet,true);menu.IsOpen=true;menu.UpdateLayout();
+   try{Assert(Headers().Contains("화면 안으로 가져오기"));}finally{menu.IsOpen=false;}
+   Settle();menu.IsOpen=true;Settle();try{Assert(!Headers().Contains("화면 안으로 가져오기"));}finally{menu.IsOpen=false;}
   });
   Check("V5BubbleHasDogPointingTail",()=>{
    var window=new BubbleWindow("둥근 말풍선",()=>{});window.Show();window.UpdateLayout();
