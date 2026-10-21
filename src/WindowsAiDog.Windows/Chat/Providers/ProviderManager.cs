@@ -17,5 +17,6 @@ public sealed class ProviderManager {
   if(clearKey)vault.Clear();else if(!string.IsNullOrWhiteSpace(replacementKey)){if(replacementKey.Length>8192||replacementKey.Any(char.IsControl))throw new ArgumentException("키 형식을 확인하세요.");vault.Save(replacementKey);}
   if(Current.Id==config.Id)Select(config.Id);
  }
+ public Task<IReadOnlyList<LocalServer>> FindLocalServersAsync(CancellationToken ct)=>LocalDiscovery.FindAsync(http,ct);
  public void Select(string id){EnsureAvailable();var next=Create(id);store.SaveSelection(id);Current=next;Generation++;Changed?.Invoke();}
 }

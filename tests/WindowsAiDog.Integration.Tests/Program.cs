@@ -152,6 +152,38 @@ Test("ModelDiscoveryFailureDoesNotChangeProviderOrFallback",async()=>{
  var folder=Path.Combine(directory,"model-failure");var store=new ProviderSettingsStore(folder);store.Save(new("local","http://127.0.0.1:1234/v1","manual-model"));store.SaveSelection("local");
  var manager=new ProviderManager(new(new Handler("",false,HttpStatusCode.ServiceUnavailable)),folder);await Throws(()=>manager.Current.Auth.ModelsAsync(default));Assert(manager.Current.Id=="local"&&manager.Configuration("local").Model=="manual-model"&&manager.Current.Auth.Connected);
 });
+Test("PresetProvidersUseFixedHttpsAddresses",()=>{
+ var ids=ProviderRegistry.All.Select(p=>p.Id).ToList();Assert(ids.Distinct().Count()==ids.Count);
+ foreach(var p in ProviderRegistry.All.Where(p=>p.FixedEndpoint)){Assert(p.DefaultEndpoint.StartsWith("https://")&&ProviderRegistry.EndpointAllowed(p.Id,p.DefaultEndpoint)&&!ProviderRegistry.EndpointAllowed(p.Id,"https://evil.example/v1")&&p.KeyPage!.StartsWith("https://"));}
+ foreach(var id in new[]{"anthropic","gemini","openrouter","groq","deepseek","mistral","xai"})Assert(ProviderRegistry.Get(id).FixedEndpoint);
+ var store=new ProviderSettingsStore(Path.Combine(directory,"presets"));bool rejected=false;try{store.Save(new("gemini","https://other.example/v1"));}catch(ArgumentException){rejected=true;}Assert(rejected);
+ Directory.CreateDirectory(store.DirectoryFor("anthropic"));File.WriteAllText(Path.Combine(store.DirectoryFor("anthropic"),"config.json"),"{\"Id\":\"anthropic\",\"Endpoint\":\"https://other.example/v1\",\"Model\":\"x\"}");
+ Assert(store.Load("anthropic").Endpoint=="https://api.anthropic.com/v1");return Task.CompletedTask;
+});
+Test("ClaudeRequestsCarryAnthropicKeyHeaders",async()=>{
+ var store=new ProviderSettingsStore(Path.Combine(directory,"claude"));new EndpointKeyStore(store.DirectoryFor("anthropic"),"https://api.anthropic.com/v1").Save("FAKE-CLAUDE-KEY");
+ var models=new HeaderHandler("{\"data\":[{\"id\":\"claude-test\"}]}");var provider=new OpenAiCompatibleProvider(new(models),new("anthropic","https://api.anthropic.com/v1"),store.DirectoryFor("anthropic"));
+ var list=await provider.Auth.ModelsAsync(default);Assert(list.Single().Slug=="claude-test"&&models.Uri=="https://api.anthropic.com/v1/models");
+ Assert(models.Header("x-api-key")=="FAKE-CLAUDE-KEY"&&models.Header("anthropic-version")=="2023-06-01"&&models.Header("Authorization")=="Bearer FAKE-CLAUDE-KEY");
+ var chat=new HeaderHandler("{\"choices\":[{\"finish_reason\":\"stop\",\"message\":{\"content\":\"{\\\"reply\\\":\\\"멍\\\",\\\"action\\\":null}\"}}]}");
+ var reply=await new OpenAiCompatibleChatClient(new(chat),"https://api.anthropic.com/v1",ProviderRegistry.Get("anthropic")).SendAsync("FAKE-CLAUDE-KEY","claude-test","hi","dog",default);
+ Assert(reply.Reply=="멍"&&chat.Uri=="https://api.anthropic.com/v1/chat/completions"&&chat.Header("x-api-key")=="FAKE-CLAUDE-KEY");
+});
+Test("GeminiModelNamesDropModelsPrefix",async()=>{
+ var store=new ProviderSettingsStore(Path.Combine(directory,"gemini"));new EndpointKeyStore(store.DirectoryFor("gemini"),"https://generativelanguage.googleapis.com/v1beta/openai").Save("FAKE-GEMINI-KEY");
+ var models=new HeaderHandler("{\"data\":[{\"id\":\"models/gemini-test\"},{\"id\":\"gemini-test\"}]}");var provider=new OpenAiCompatibleProvider(new(models),new("gemini","https://generativelanguage.googleapis.com/v1beta/openai"),store.DirectoryFor("gemini"));
+ var list=await provider.Auth.ModelsAsync(default);Assert(list.Count==1&&list[0].Slug=="gemini-test"&&models.Uri=="https://generativelanguage.googleapis.com/v1beta/openai/models"&&models.Header("x-api-key") is null);
+});
+Test("FencedJsonReplyIsAccepted",async()=>{
+ var fenced="{\"choices\":[{\"finish_reason\":\"stop\",\"message\":{\"content\":\"```json\\n{\\\"reply\\\":\\\"안녕\\\",\\\"action\\\":\\\"WagTail\\\"}\\n```\"}}]}";
+ var reply=await new OpenAiCompatibleChatClient(new(new Handler(fenced)),"http://127.0.0.1:11434/v1").SendAsync("","m","hi","dog",default);Assert(reply.Reply=="안녕"&&reply.Action==PetAction.WagTail);
+ Assert(ReplyJson.Extract("Sure!\n{\"reply\":\"a\",\"action\":null}\nBye")=="{\"reply\":\"a\",\"action\":null}");
+});
+Test("LocalDiscoveryFindsOnlyRunningServers",async()=>{
+ var handler=new RouteHandler(new(){["http://127.0.0.1:11434/v1/models"]="{\"data\":[{\"id\":\"llama3\"},{\"id\":\"qwen\"}]}",["http://127.0.0.1:1234/v1/models"]="not json"});
+ var found=await LocalDiscovery.FindAsync(new(handler),default);Assert(found.Count==1&&found[0].Name=="Ollama"&&found[0].ModelCount==2&&found[0].Endpoint=="http://127.0.0.1:11434/v1");
+ Assert(handler.Requested.All(u=>u.StartsWith("http://127.0.0.1:"))&&handler.Requested.Count==LocalDiscovery.Known.Count);
+});
 int failures=0;
 foreach(var (name,body) in tests){try{await body();Console.WriteLine("PASS "+name);}catch(Exception e){failures++;Console.WriteLine("FAIL "+name+": "+e.Message);}}
 Directory.Delete(directory,true);
@@ -176,4 +208,13 @@ sealed class DelayedDisconnectAuth:IChatAuth {
  public Task<string> AccessTokenAsync(CancellationToken ct)=>Task.FromResult("FAKE");
  public Task<IReadOnlyList<ModelChoice>> ModelsAsync(CancellationToken ct)=>Task.FromResult<IReadOnlyList<ModelChoice>>([]);
  public async Task<bool> DisconnectAsync(CancellationToken ct){var result=await Complete.Task;Connected=false;return result;}
+}
+sealed class HeaderHandler(string body):HttpMessageHandler {
+ public string? Uri;private readonly Dictionary<string,string> headers=new(StringComparer.OrdinalIgnoreCase);
+ public string? Header(string name)=>headers.GetValueOrDefault(name);
+ protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,CancellationToken ct){Uri=request.RequestUri!.AbsoluteUri;foreach(var h in request.Headers)headers[h.Key]=string.Join(",",h.Value);return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK){Content=new StringContent(body,Encoding.UTF8,"application/json")});}
+}
+sealed class RouteHandler(Dictionary<string,string> routes):HttpMessageHandler {
+ public readonly System.Collections.Concurrent.ConcurrentBag<string> Requested=new();
+ protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,CancellationToken ct){var uri=request.RequestUri!.AbsoluteUri;Requested.Add(uri);if(!routes.TryGetValue(uri,out var body))throw new HttpRequestException("connection refused");return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK){Content=new StringContent(body,Encoding.UTF8,"application/json")});}
 }

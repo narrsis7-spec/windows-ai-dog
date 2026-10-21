@@ -31,8 +31,8 @@ dotnet publish src/WindowsAiDog.Windows -c Release -r win-x64 --self-contained t
 AI를 연결하지 않아도 강아지 동작·교감·소리는 모두 로컬에서 동작합니다. 대화를 쓰려면 오른쪽 클릭 → 설정 → AI · 연결 · 모델에서 각자 연결합니다.
 
 - ChatGPT 구독: 브라우저 로그인(OAuth + PKCE)으로 본인 계정 연결
-- OpenAI API / OpenAI 호환 API: 본인 API 키(별도 과금)
-- 로컬 OpenAI 호환 서버: 직접 실행한 서버 주소
+- API 키로 연결(각 서비스에 별도 과금): OpenAI, Claude(Anthropic), Gemini(Google), OpenRouter, Groq, DeepSeek, Mistral, xAI Grok, 그 밖의 OpenAI 호환 주소
+- 로컬 AI: Ollama, LM Studio, llama.cpp, vLLM, Jan 등 내 PC에서 실행 중인 서버. "내 PC에서 로컬 AI 찾기"로 자동으로 찾습니다.
 
 대기 중에는 AI를 호출하지 않으며, 유료 API로 자동 전환하지 않습니다. 대화는 메모리에 최근 몇 턴만 두고 창을 닫으면 잊습니다.
 
@@ -66,7 +66,7 @@ UI 테스트는 실제 WPF 창을 잠깐 띄웁니다.
 
 - **Run:** `dotnet publish src/WindowsAiDog.Windows -c Release -r win-x64 --self-contained true -o out`, then start `out/WindowsAiDog.Windows.exe` (Windows 10/11 x64, unsigned).
 - **Use:** click to pet, drag to move, right-click for treats, actions, focus mode, mute and settings.
-- **AI chat (optional):** connect your own ChatGPT account, an OpenAI(-compatible) API key or a local OpenAI-compatible server. Nothing is called while idle.
+- **AI chat (optional):** connect your own ChatGPT account; an API key for OpenAI, Claude, Gemini, OpenRouter, Groq, DeepSeek, Mistral, xAI or any OpenAI-compatible service; or a local server (Ollama, LM Studio, llama.cpp, vLLM, Jan) found automatically. Nothing is called while idle.
 - **Privacy:** settings and credentials stay in `%LOCALAPPDATA%\WindowsAiDog`, protected with DPAPI.
 - **Art:** AI-generated for this project; the current sprites were made with Google Flow and carry invisible SynthID watermarks.
 - **License:** MIT; third-party sounds (CC0) and Hermes-derived ideas (MIT) are listed in `assets/licenses`.
